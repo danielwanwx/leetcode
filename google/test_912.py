@@ -10,4 +10,4 @@ def test_sort_array():
 # Run the test function
 if __name__ == "__main__":
     test_sort_array()
-    print("All tests for 1768 passed!")
+    print("All tests for 912 passed!")
