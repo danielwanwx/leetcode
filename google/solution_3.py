@@ -1,13 +1,28 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        count = {}
-        res, j = 0, 0
+        count = {}  # 创建一个字典用于记录每个字符的出现次数
+        res, j = 0, 0  # 初始化结果res为0，j用于记录子串的开始位置
+
+        # 遍历字符串s
         for i in range(len(s)):
-            ch = s[i]
-            count[ch] = count.get(ch, 0) + 1
+            ch = s[i]  # 获取当前字符
+            count[ch] = count.get(ch, 0) + 1  # 更新这个字符的计数
+
+            # 如果当前字符的计数大于1，说明有重复，需要调整子串的开始位置
             while j < len(s) and count[ch] > 1:
-                count[s[j]] -= 1
-                j += 1
+                count[s[j]] -= 1  # 减少开始位置字符的计数
+                j += 1  # 移动子串的开始位置
+
+            # 更新结果，当前子串的长度是i - j + 1
             res = max(res, i - j + 1)
 
-        return res
+        return res  # 返回结果
+
+'''整体思路：
+
+使用一个字典来记录每个字符的出现次数。
+遍历字符串，更新每个字符的计数。
+如果遇到某个字符的计数超过1（即出现了重复字符），则调整子串的开始位置，直到移除重复的字符。
+在每次遍历中，计算当前不含重复字符的子串的长度，并更新最大长度。
+这种方法的时间复杂度是O(n)，空间复杂度也是O(n)，其中n是字符串的长度。它利用了滑动窗口的思想，通过两个指针i和j来维护一个动态的窗口，确保窗口内的字符都是不重复的。
+'''
